@@ -6,7 +6,7 @@ events.on('new-flight', (flight) => {
     console.log(`  event: 'new-flight',`);
     console.log(`  time: ${new Date().toLocaleString()}`);
     console.log('Details:', flight, '}');
-    
+
 });
 
 events.on('took-off', (flight) => {
