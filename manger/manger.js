@@ -2,7 +2,6 @@
 const Chance = require('chance');
 const chance = new Chance();
 
-
 require("dotenv").config();
 const PORT = process.env.PORT || 3000;
 const host = `http://localhost:${PORT}`;
@@ -23,6 +22,7 @@ setInterval(() => {
     console.log(`Manager: new flight with ID '${payload.flightID}' has been scheduled`);
 
     socket.emit('new-flight', (payload));
+    socket.emit('get-all');
 }, 10000)
 
 socket.on('connect', () => {
