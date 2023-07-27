@@ -7,11 +7,16 @@ const airlineServer = `http://localhost:${PORT}/airline`;
 const socket = io.connect(server);
 const airlineSocket = io.connect(airlineServer);
 
-console.log(PORT);
-
-
 socket.on('connect', () => {
     console.log('Pilot: Connected to the server');
+    socket.emit('get-all');
+});
+
+socket.on('flight', (flight) => {
+    console.log(`Pilot: Flight with ID '${flight.flightID}' took off`);
+    socket.on('fligt', (flightID) => {
+        console.log(`Pilot: Sorry, I didn't have this flight ID '${flightID}'.`);
+    });
 });
 
 socket.on('new-flight', (flight) => {
@@ -31,4 +36,3 @@ airlineSocket.on('arrived', (flight) => {
         socket.emit('arrived', flight);
     }, 3000);
 });
-
